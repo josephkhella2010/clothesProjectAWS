@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import MobileNavigation from "./childComponent/MobileNavigation";
 import styles from "./navigation.module.css";
-import DesktopNavigation from "./childComponent/desktopNavigation";
+import DesktopNavigation from "./childComponent/DesktopNavigation";
 
 export default function NavigationPage() {
   const [IsClickedHam, setClickedHam] = useState<boolean>(false);
