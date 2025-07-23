@@ -2,7 +2,13 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 
 export default function ProductPage() {
-  const [productsData, setProductsData] = useState([]);
+  interface ProductType {
+    name: string;
+    description: string;
+    price: number;
+    id?: number;
+  }
+  const [productsData, setProductsData] = useState<ProductType[]>([]);
   async function fetchProduct() {
     try {
       const response = await axios.get(
