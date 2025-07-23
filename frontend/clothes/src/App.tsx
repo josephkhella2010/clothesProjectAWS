@@ -1,9 +1,10 @@
 import "./App.css";
+import RouterPage from "./pages/Routes/RouterPage";
 
 function App() {
   return (
     <>
-      <h1>home</h1>
+      <RouterPage />
     </>
   );
 }
