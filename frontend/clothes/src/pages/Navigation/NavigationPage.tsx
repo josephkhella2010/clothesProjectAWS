@@ -19,14 +19,10 @@ export default function NavigationPage() {
     };
 
     window.addEventListener("resize", handleResize);
-    handleResize(); // initialize state
+    handleResize();
 
     return () => window.removeEventListener("resize", handleResize);
-  }, [windowWidth]);
-  console.log(windowWidth);
-
-  // Instead of boolean, decide render based on numeric width:
-
+  });
   return (
     <div className={styles.navigationWrapper}>
       {isMobile ? (

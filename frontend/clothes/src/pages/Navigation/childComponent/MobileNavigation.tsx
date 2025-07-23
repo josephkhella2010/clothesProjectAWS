@@ -12,7 +12,6 @@ export default function MobileNavigation({
   function handleSideBar() {
     setClickedHam(!IsClickedHam);
   }
-  console.log(IsClickedHam);
   function handleCloseSideBar() {
     setClickedHam(false);
   }
