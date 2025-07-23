@@ -1,17 +1,15 @@
 import { useEffect, useState } from "react";
-import DesktopNavigation from "./childComponent/desktopNavigation";
 import MobileNavigation from "./childComponent/MobileNavigation";
 import styles from "./navigation.module.css";
+import DesktopNavigation from "./childComponent/desktopNavigation";
 
 export default function NavigationPage() {
   const [IsClickedHam, setClickedHam] = useState<boolean>(false);
-  const [windowWidth, setWindowWidth] = useState<any>(0);
   const [isMobile, setIsMobile] = useState<boolean>(false);
 
   useEffect(() => {
     const handleResize = () => {
-      setWindowWidth(window.innerWidth);
-      if (windowWidth < 600) {
+      if (window.innerWidth < 600) {
         setIsMobile(true);
       } else {
         setIsMobile(false);
