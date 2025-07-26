@@ -12,7 +12,7 @@ export default function ProductPage() {
   async function fetchProduct() {
     try {
       const response = await axios.get(
-        "https://cyrbaxdwxy.us-east-1.awsapprunner.com/api/products"
+        "https://dg98ub8cgd.us-east-1.awsapprunner.com/api/products"
       );
       const { products } = response.data;
       setProductsData(products);
