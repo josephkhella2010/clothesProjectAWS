@@ -10,11 +10,39 @@ export default function RegisterSection() {
   return (
     <div className={styles.formContainer}>
       <form action="" className={styles.formSection}>
-        <input type="text" placeholder="Username" value={userData.username} 
-        onChange={(e)=>{setUserData((prev)=>{...prev,username:e,target.value})}}
+        <input
+          type="text"
+          placeholder="Username"
+          value={userData.username}
+          onChange={(e) => {
+            setUserData((prev) => ({
+              ...prev,
+              username: e.target.value,
+            }));
+          }}
         />
-        <input type="text" placeholder="Email" value={userData.email} />
-        <input type="text" placeholder="password" value={userData.password} />
+        <input
+          type="text"
+          placeholder="Email"
+          value={userData.email}
+          onChange={(e) => {
+            setUserData((prev) => ({
+              ...prev,
+              email: e.target.value,
+            }));
+          }}
+        />
+        <input
+          type="text"
+          placeholder="password"
+          value={userData.password}
+          onChange={(e) => {
+            setUserData((prev) => ({
+              ...prev,
+              password: e.target.value,
+            }));
+          }}
+        />
         <button>Register</button>
       </form>
     </div>
