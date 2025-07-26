@@ -4,7 +4,8 @@
   box-sizing: border-box;
 }
 #root {
-  background-color: rgb(220, 108, 108);
+  /*   background-color: rgb(220, 108, 108);
+ */
   min-height: 100dvh;
   overflow: hidden;
   position: relative;
