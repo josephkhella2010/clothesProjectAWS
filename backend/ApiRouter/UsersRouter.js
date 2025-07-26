@@ -1,6 +1,5 @@
 const express = require("express");
 const router = express.Router();
-
 const {
   findAllUsers,
   createUser,
@@ -19,18 +18,23 @@ router.get("/users", async (req, res) => {
 router.post("/addUser", async (req, res) => {
   try {
     const { username, email, password } = req.body;
+
     if (!username || !email || !password) {
-      // Validate input
       return res.status(400).json({ error: "All fields are required" });
     }
-    const userData = req.body;
-    const newUser = await createUser(userData);
-    const existUser = newUser.find(
+
+    const users = await findAllUsers();
+    const existUser = users.find(
       (user) => user.username === username || user.email === email
     );
+
     if (existUser) {
-      res.status(405).json({ error: "username is already exist" });
+      return res
+        .status(409)
+        .json({ error: "Username or email already exists" });
     }
+
+    const newUser = await createUser(req.body);
     res.status(201).json({ user: newUser });
   } catch (error) {
     console.error(error);
