@@ -1,3 +1,4 @@
+/*
 import { useState } from "react";
 import styles from "../.module.css";
 import type { UserType } from "../../../helps/InterfacesType";
@@ -13,7 +14,7 @@ export default function RegisterSection() {
     password: "",
   });
   console.log(userData, dispatch);
-  /*  async function fetchUser() {
+   async function fetchUser() {
     try {
       const response = await axios.get(
         "https://dg98ub8cgd.us-east-1.awsapprunner.com/api/users"
@@ -61,8 +62,9 @@ export default function RegisterSection() {
       console.log(error);
     }
   }
-  console.log(userData);  */
-  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {}
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+  }
 
   return (
     <div className={styles.formContainer}>
@@ -96,3 +98,5 @@ export default function RegisterSection() {
     </div>
   );
 }
+  console.log(userData);
+    */
