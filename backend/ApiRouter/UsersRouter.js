@@ -19,13 +19,17 @@ router.post("/addUser", async (req, res) => {
   try {
     const { username, email, password } = req.body;
 
+    // Step 1: Validate input
     if (!username || !email || !password) {
       return res.status(400).json({ error: "All fields are required" });
     }
 
+    // Step 2: Check if user already exists
     const users = await findAllUsers();
     const existUser = users.find(
-      (user) => user.username === username || user.email === email
+      (user) =>
+        user.username?.toLowerCase() === username.toLowerCase() ||
+        user.email?.toLowerCase() === email.toLowerCase()
     );
 
     if (existUser) {
@@ -34,11 +38,12 @@ router.post("/addUser", async (req, res) => {
         .json({ error: "Username or email already exists" });
     }
 
+    // Step 3: Create new user
     const newUser = await createUser(req.body);
     res.status(201).json({ user: newUser });
   } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: "error with add user request" });
+    console.error("🔥 Error in POST /addUser:", error);
+    res.status(500).json({ error: "Server error while adding user" });
   }
 });
 
