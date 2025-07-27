@@ -1,22 +1,19 @@
-/*
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import styles from "../.module.css";
 import type { UserType } from "../../../helps/InterfacesType";
-import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
-import { setUserData, setUsersData } from "../../../SliceReducers/UserReducer";
 import type { RootState } from "../../../store/Store";
-import { toast, ToastContainer } from "react-toastify";
+import { ToastContainer } from "react-toastify";
 export default function RegisterSection() {
   const { userData } = useSelector((state: RootState) => state.UserDataStore);
 
   const dispatch = useDispatch();
   const [userInfo, setuserInfo] = useState<UserType>({
     username: "",
-    email: "",
     password: "",
   });
-    async function fetchUser() {
+  console.log(userData, dispatch);
+  /*  async function fetchUser() {
     try {
       const response = await axios.get(
         "https://dg98ub8cgd.us-east-1.awsapprunner.com/api/users"
@@ -64,7 +61,7 @@ export default function RegisterSection() {
       console.log(error);
     }
   }
-  console.log(userData); 
+  console.log(userData);  */
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {}
 
   return (
@@ -82,17 +79,7 @@ export default function RegisterSection() {
             }));
           }}
         />
-        <input
-          type="text"
-          placeholder="Email"
-          value={userInfo.email}
-          onChange={(e) => {
-            setuserInfo((prev) => ({
-              ...prev,
-              email: e.target.value,
-            }));
-          }}
-        />
+
         <input
           type="text"
           placeholder="password"
@@ -104,9 +91,8 @@ export default function RegisterSection() {
             }));
           }}
         />
-        <button>Register</button>
+        <button type="submit">Login</button>
       </form>
     </div>
   );
 }
-*/
