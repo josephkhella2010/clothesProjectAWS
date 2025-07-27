@@ -1,11 +1,12 @@
-/*
-import { useState } from "react";
-import styles from "../.module.css";
+import { useEffect, useState } from "react";
+import styles from "../loginPage.module.css";
 import type { UserType } from "../../../helps/InterfacesType";
 import { useDispatch, useSelector } from "react-redux";
 import type { RootState } from "../../../store/Store";
-import { ToastContainer } from "react-toastify";
-export default function RegisterSection() {
+import { toast, ToastContainer } from "react-toastify";
+import axios from "axios";
+import { setUsersData } from "../../../SliceReducers/UserReducer";
+export default function LoginSection() {
   const { userData } = useSelector((state: RootState) => state.UserDataStore);
 
   const dispatch = useDispatch();
@@ -13,8 +14,7 @@ export default function RegisterSection() {
     username: "",
     password: "",
   });
-  console.log(userData, dispatch);
-   async function fetchUser() {
+  /*    async function fetchUser() {
     try {
       const response = await axios.get(
         "https://dg98ub8cgd.us-east-1.awsapprunner.com/api/users"
@@ -61,10 +61,45 @@ export default function RegisterSection() {
     } catch (error) {
       console.log(error);
     }
+  } */
+  /*  */
+  async function fetchUser() {
+    try {
+      const response = await axios.get(
+        "https://dg98ub8cgd.us-east-1.awsapprunner.com/api/users"
+      );
+      const { users } = response.data;
+      dispatch(setUsersData(users));
+    } catch (error) {
+      console.log(error);
+    }
   }
+
+  useEffect(() => {
+    fetchUser();
+  }, [dispatch]);
+
+  /*  */
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
+    const existUser = userData.find(
+      (user) =>
+        user.email === userInfo.email || user.username === userInfo.username
+    );
+    if (existUser) {
+      toast.error("user is already exist");
+      return;
+    }
+    if (!userInfo.username || !userInfo.password) {
+      toast.error("please fill all fields");
+      return;
+    }
+    try {
+    } catch (error) {
+      console.log(error);
+    }
   }
+  console.log(userData);
 
   return (
     <div className={styles.formContainer}>
@@ -98,5 +133,3 @@ export default function RegisterSection() {
     </div>
   );
 }
-  console.log(userData);
-    */
