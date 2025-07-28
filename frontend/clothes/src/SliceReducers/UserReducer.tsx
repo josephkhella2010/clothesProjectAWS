@@ -24,15 +24,14 @@ const UserSlice = createSlice({
       state.userData = action.payload;
     },
     setToken: (state, action: PayloadAction<string | null>) => {
-      if (state.singleUser) {
-        state.token = action.payload;
-        if (action.payload) {
-          localStorage.setItem("token", action.payload);
-        } else {
-          localStorage.removeItem("token");
-        }
+      state.token = action.payload;
+      if (action.payload) {
+        localStorage.setItem("token", action.payload);
+      } else {
+        localStorage.removeItem("token");
       }
     },
+
     setSingleUser: (state, action: PayloadAction<SingleUserType | null>) => {
       state.singleUser = action.payload;
       if (action.payload) {
