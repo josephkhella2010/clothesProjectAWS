@@ -2,10 +2,11 @@ import type { PropsType } from "./MobileNavigation";
 import { Link } from "react-router-dom";
 import styles from "../navigation.module.css";
 import { FaArrowLeftLong } from "react-icons/fa6";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { logoutUser } from "../../../SliceReducers/UserReducer";
+import type { RootState } from "../../../store/Store";
 export default function MobileSideBar({ IsClickedHam }: PropsType) {
-  const tokenFromStorage = localStorage.getItem("token");
+  const { token } = useSelector((state: RootState) => state.UserDataStore);
   const dispatch = useDispatch();
   return (
     <>
@@ -29,7 +30,7 @@ export default function MobileSideBar({ IsClickedHam }: PropsType) {
           <Link to="/register">Register</Link>
         </li>
         <li>
-          {tokenFromStorage ? (
+          {token ? (
             <li
               onClick={() => {
                 dispatch(logoutUser());

@@ -1,10 +1,11 @@
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { logoutUser } from "../../../SliceReducers/UserReducer";
 import styles from "../navigation.module.css";
 import { Link } from "react-router-dom";
+import type { RootState } from "../../../store/Store";
 
 export default function DesktopNavigation() {
-  const tokenFromStorage = localStorage.getItem("token");
+  const { token } = useSelector((state: RootState) => state.UserDataStore);
   const dispatch = useDispatch();
   return (
     <div className={styles.DesktopNavigationContainer}>
@@ -26,7 +27,7 @@ export default function DesktopNavigation() {
           </Link>
         </li>
         <li>
-          {tokenFromStorage ? (
+          {token ? (
             <li
               className={styles.desktopNavigationLink}
               onClick={() => {
