@@ -6,6 +6,7 @@ import HomePage from "../Home/HomePage";
 import ProductPage from "../Product/ProductPage";
 import NavigationPage from "../Navigation/NavigationPage";
 import FooterSection from "../Footer/FooterSection";
+import SingleProductPage from "../SingleProduct/SingleProductPage";
 
 export default function RouterPage() {
   return (
@@ -17,6 +18,7 @@ export default function RouterPage() {
         <Route path="/register" element={<RegisterPage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/product" element={<ProductPage />} />
+        <Route path="/singleproduct/:id" element={<SingleProductPage />} />
       </Routes>
       <FooterSection />
     </Router>

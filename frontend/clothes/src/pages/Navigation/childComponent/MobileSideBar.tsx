@@ -31,13 +31,13 @@ export default function MobileSideBar({ IsClickedHam }: PropsType) {
         </li>
         <li>
           {token ? (
-            <li
+            <span
               onClick={() => {
                 dispatch(logoutUser());
               }}
             >
               Logout
-            </li>
+            </span>
           ) : (
             <Link to="/login">Login</Link>
           )}

@@ -1,21 +1,22 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
+import type { RootState } from "../../store/Store";
+import { setProducts } from "../../SliceReducers/ProductReducer";
 
 export default function ProductPage() {
-  interface ProductType {
-    name: string;
-    description: string;
-    price: number;
-    id?: number;
-  }
-  const [productsData, setProductsData] = useState<ProductType[]>([]);
+  const { products } = useSelector(
+    (state: RootState) => state.ProductDataStore
+  );
+  const dispatch = useDispatch();
   async function fetchProduct() {
     try {
       const response = await axios.get(
         "https://dg98ub8cgd.us-east-1.awsapprunner.com/api/products"
       );
       const { products } = response.data;
-      setProductsData(products);
+      dispatch(setProducts(products));
     } catch (error) {
       console.log(error);
     }
@@ -26,8 +27,8 @@ export default function ProductPage() {
   return (
     <div>
       <h1>ProductPage</h1>
-      {productsData &&
-        productsData.map((item, index) => {
+      {products &&
+        products.map((item, index) => {
           return (
             <div key={index}>
               <li> {index + 1} </li>
@@ -36,6 +37,9 @@ export default function ProductPage() {
               <li> Description:{item?.description} </li>
 
               <li>Price:{item?.price} </li>
+              <Link to={`/singleproduct/${item.id}`}>
+                <button>See more details</button>
+              </Link>
             </div>
           );
         })}

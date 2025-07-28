@@ -14,3 +14,9 @@ export interface SingleUserType {
 export interface TokenType {
   token: string | null;
 }
+export interface ProductType {
+  name: string;
+  description: string;
+  price: number;
+  id?: number;
+}

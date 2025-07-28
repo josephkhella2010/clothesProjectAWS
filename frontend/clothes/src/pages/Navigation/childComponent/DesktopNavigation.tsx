@@ -3,6 +3,7 @@ import { logoutUser } from "../../../SliceReducers/UserReducer";
 import styles from "../navigation.module.css";
 import { Link } from "react-router-dom";
 import type { RootState } from "../../../store/Store";
+import { RiSpam3Fill } from "react-icons/ri";
 
 export default function DesktopNavigation() {
   const { token } = useSelector((state: RootState) => state.UserDataStore);
@@ -28,14 +29,14 @@ export default function DesktopNavigation() {
         </li>
         <li>
           {token ? (
-            <li
+            <span
               className={styles.desktopNavigationLink}
               onClick={() => {
                 dispatch(logoutUser());
               }}
             >
               Logout
-            </li>
+            </span>
           ) : (
             <Link to="/login" className={styles.desktopNavigationLink}>
               Login
