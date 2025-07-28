@@ -3,7 +3,6 @@ import { logoutUser } from "../../../SliceReducers/UserReducer";
 import styles from "../navigation.module.css";
 import { Link } from "react-router-dom";
 import type { RootState } from "../../../store/Store";
-import { RiSpam3Fill } from "react-icons/ri";
 
 export default function DesktopNavigation() {
   const { token } = useSelector((state: RootState) => state.UserDataStore);
