@@ -5,6 +5,7 @@ import type { RootState } from "../../store/Store";
 import axios from "axios";
 import { setProducts } from "../../SliceReducers/ProductReducer";
 import { useEffect } from "react";
+import { toast, ToastContainer } from "react-toastify";
 export default function SingleProductPage() {
   const dispatch = useDispatch();
   const { id } = useParams<{ id: string }>();
@@ -32,6 +33,10 @@ export default function SingleProductPage() {
   /*  */
   async function handleAddToCart() {
     console.log(singleProduct);
+    if (!tokenfromStorage || tokenfromStorage === "undefined") {
+      toast.error("please login to can add product to cart");
+      return;
+    }
     try {
       const response = await axios.post(
         "https://dg98ub8cgd.us-east-1.awsapprunner.com/api/addToCart",
@@ -52,6 +57,8 @@ export default function SingleProductPage() {
   /*  */
   return (
     <div className={styles.SingleProductWrapper}>
+      <ToastContainer />
+
       <h1> single Page</h1>
       {singleProduct && (
         <div>
