@@ -8,6 +8,7 @@ import { useEffect } from "react";
 export default function SingleProductPage() {
   const dispatch = useDispatch();
   const { id } = useParams<{ id: string }>();
+  const tokenfromStorage = localStorage.getItem("token");
   const { products } = useSelector(
     (state: RootState) => state.ProductDataStore
   );
@@ -26,8 +27,29 @@ export default function SingleProductPage() {
     fetchProduct();
   }, []);
   const singleProduct = products.find((item) => String(item.id) === id);
-  console.log(singleProduct);
-  console.log(id);
+  //console.log(singleProduct);
+  //console.log(id);
+  /*  */
+  async function handleAddToCart() {
+    console.log(singleProduct);
+    try {
+      const response = await axios.post(
+        " http://localhost:4000/api/addToCart",
+        { product: singleProduct, quantity: 1 },
+        {
+          headers: {
+            Authorization: `Bearer ${tokenfromStorage}`,
+          },
+        }
+      );
+      const { cart } = response.data;
+      console.log(cart);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  /*  */
   return (
     <div className={styles.SingleProductWrapper}>
       <h1> single Page</h1>
@@ -37,6 +59,7 @@ export default function SingleProductPage() {
           <li>Name: {singleProduct.name}</li>
           <li>Description: {singleProduct.description}</li>
           <li>Price: {singleProduct.price} $</li>
+          <button onClick={handleAddToCart}> add to cart</button>
         </div>
       )}
     </div>

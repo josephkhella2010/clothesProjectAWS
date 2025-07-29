@@ -27,6 +27,7 @@ app.use(express.json());
 app.use("/api", require("./ApiRouter/UsersRouter"));
 app.use("/api", require("./ApiRouter/ProductRouter"));
 app.use("/api", require("./ApiRouter/LoginUser"));
+app.use("/api", require("./ApiRouter/AddCartRout"));
 
 app.listen(PORT, () =>
   console.log(`🚀 Server running on http://localhost:${PORT}`)
