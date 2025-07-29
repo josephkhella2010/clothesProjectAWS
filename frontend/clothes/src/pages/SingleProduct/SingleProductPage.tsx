@@ -34,7 +34,7 @@ export default function SingleProductPage() {
     console.log(singleProduct);
     try {
       const response = await axios.post(
-        " http://localhost:4000/api/addToCart",
+        "https://dg98ub8cgd.us-east-1.awsapprunner.com/api/addToCart",
         { product: singleProduct, quantity: 1 },
         {
           headers: {
