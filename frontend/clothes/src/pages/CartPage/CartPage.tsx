@@ -9,7 +9,6 @@ export default function CartPage() {
   const userFromStorage = JSON.parse(localStorage.getItem("user") || "{}");
   const dispatch = useDispatch();
   const { userData } = useSelector((state: RootState) => state.UserDataStore);
-  console.log(userFromStorage);
   async function getUsers() {
     try {
       const response = await axios.get(
@@ -24,11 +23,11 @@ export default function CartPage() {
   useEffect(() => {
     getUsers();
   }, [dispatch]);
-  console.log(userData);
 
   const user = userData.find(
     (item: any) => String(item.id) === String(userFromStorage.id)
   );
-  console.log(user?.cartItems);
+  console.log(user);
+
   return <div>CartPage</div>;
 }
