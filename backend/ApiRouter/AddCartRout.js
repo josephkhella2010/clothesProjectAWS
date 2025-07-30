@@ -1,7 +1,10 @@
 const express = require("express");
 const router = express.Router();
 const { authenticateToken } = require("../middleware/auth");
-const { addCartToUser } = require("../DynamoDBFunctions/AddToCartDBFunction");
+const {
+  addCartToUser,
+  deleteCartItem,
+} = require("../DynamoDBFunctions/AddToCartDBFunction");
 
 router.post("/addToCart", authenticateToken, async (req, res) => {
   try {
@@ -19,8 +22,31 @@ router.post("/addToCart", authenticateToken, async (req, res) => {
     return res.status(200).json({ cart });
   } catch (error) {
     console.error("Error adding product to cart:", error);
-    res.status(500).json({ error: "Failed to add product to cart" });
+    return res.status(500).json({ error: "Failed to add product to cart" });
   }
 });
+
+router.delete(
+  "/deleteCartItem/:cartItemId",
+  authenticateToken,
+  async (req, res) => {
+    const userId = req.user.id; // from JWT
+    const cartItemId = parseInt(req.params.cartItemId); // Important!
+
+    try {
+      const result = await deleteCartItem(userId, cartItemId);
+      if (!result) {
+        return res.status(404).json({ error: "Cart item not found" });
+      }
+      return res
+        .status(200)
+        .json({ message: "Cart item deleted successfully" });
+    } catch (error) {
+      return res
+        .status(500)
+        .json({ error: "Failed to delete product from cart" });
+    }
+  }
+);
 
 module.exports = router;

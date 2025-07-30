@@ -114,6 +114,52 @@ async function addCartToUser(userId, product, quantity = 1) {
     throw error;
   }
 }
+/*  delete */
+
+async function deleteCartItem(userId, cartItemId) {
+  try {
+    // Step 1: Get user
+    const userData = await ddbDocClient.send(
+      new GetCommand({
+        TableName: Users_Table,
+        Key: { id: userId },
+      })
+    );
+
+    const user = userData.Item;
+    if (!user) throw new Error(`User ${userId} not found`);
+
+    const cartItems = user.cartItems || [];
+
+    // Step 2: Filter out the cart item by cartItemId
+    const updatedCart = cartItems.filter(
+      (item) => item.cartItemId !== cartItemId
+    );
+
+    if (updatedCart.length === cartItems.length) {
+      return false; // nothing deleted
+    }
+
+    // Step 3: Save updated cart
+    await ddbDocClient.send(
+      new UpdateCommand({
+        TableName: Users_Table,
+        Key: { id: userId },
+        UpdateExpression: "SET cartItems = :items",
+        ExpressionAttributeValues: {
+          ":items": updatedCart,
+        },
+      })
+    );
+
+    return true;
+  } catch (err) {
+    console.error("Error deleting cart item:", err);
+    throw err;
+  }
+}
+
 module.exports = {
   addCartToUser,
+  deleteCartItem,
 };
