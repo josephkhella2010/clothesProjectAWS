@@ -1,0 +1,197 @@
+.ProductPageWrapper {
+  width: 100%;
+  min-height: 100dvh;
+  background-color: rgb(44, 49, 173);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.ProductPageWrapper h1 {
+  padding: 20px;
+  height: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: aliceblue;
+  font-family: Georgia, "Times New Roman", Times, serif;
+  font-size: 50px;
+}
+/*  */
+.searchWrapper {
+  background-color: red;
+  width: 100%;
+  height: 300px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 50px 20px;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.inputSection {
+  background-color: white;
+  width: 60%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 20px;
+  box-shadow: 0px 0px 2px 0px black;
+  padding: 5px 10px;
+  height: 40px;
+}
+.inputSection input {
+  border: none;
+  outline: none;
+  width: 85%;
+  font-size: 20px;
+}
+.SearchIcon {
+  cursor: pointer;
+  font-size: 20px;
+  font-weight: bolder;
+}
+.DropdownContainer {
+  width: 100%;
+  background-color: green;
+  /*   height: 100px;
+ */
+}
+.Dropdownsection {
+  height: 100%;
+  background-color: chartreuse;
+  width: 200px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  position: relative;
+}
+.DropdownInputSection {
+  width: 100%;
+  background-color: white;
+  height: 50px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 15px;
+}
+.DropdownMenu {
+  background-color: crimson;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 15px;
+  position: absolute;
+  top: 55px;
+  left: 0px;
+}
+.DropdownMenu p {
+  padding: 10px;
+  cursor: pointer;
+}
+.DropdownMenuLine {
+  height: 0.5px;
+  width: 100%;
+  background-color: black;
+}
+.roundUp {
+  transform: rotate(180deg);
+  transition: transform 0.3s ease;
+}
+.roundDown {
+  transform: rotate(0deg);
+  transition: transform 0.3s ease;
+}
+/*  */
+
+.productItemContainer {
+  /*   background-color: brown;
+ */
+  width: 90%;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 40px;
+}
+.productItemSection {
+  background-color: rgba(167, 163, 232, 0.645);
+  padding: 10px;
+  border-radius: 15px;
+  transition: transform 1s linear;
+}
+.productItemSection:hover {
+  transform: scale(1.12);
+}
+.productItemSection img {
+  width: 100%;
+  border-radius: 5px;
+}
+.productItemLink {
+  list-style: none;
+  word-break: break-all;
+  text-decoration: none;
+  display: flex;
+  gap: 15px;
+  flex-direction: column;
+  cursor: pointer;
+}
+
+.productItemTextContent {
+  /*   background-color: rgb(138, 138, 23);
+ */
+  display: flex;
+  gap: 15px;
+  flex-direction: column;
+  font-size: 20px;
+  color: aliceblue;
+  flex-direction: column;
+  padding: 10px;
+}
+.productItemTextContent li span {
+  font-size: 25px;
+  font-weight: bold;
+}
+.productItemTextContent button {
+  width: 60%;
+  padding: 10px;
+  background-color: transparent;
+  border: 1px solid white;
+  border-radius: 10px;
+  height: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  transition: transform 0.5s linear;
+  color: white;
+}
+.productItemTextContent button:hover {
+  background-color: rgb(94, 128, 157);
+  color: black;
+  border: none;
+}
+.productItemTextContent button:hover {
+  transform: scale(1.3);
+}
+
+.buttonContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+/*  */
+@media screen and (max-width: 700px) {
+  .productItemContainer {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/*  */
+@media screen and (max-width: 450px) {
+  .productItemContainer {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}

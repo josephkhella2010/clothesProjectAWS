@@ -8,6 +8,7 @@ import NavigationPage from "../Navigation/NavigationPage";
 import FooterSection from "../Footer/FooterSection";
 import SingleProductPage from "../SingleProduct/SingleProductPage";
 import CartPage from "../CartPage/CartPage";
+import SlicePagination from "../SlicePagination/SlicePagination";
 
 export default function RouterPage() {
   return (
@@ -20,6 +21,7 @@ export default function RouterPage() {
         <Route path="/login" element={<LoginPage />} />
         <Route path="/product" element={<ProductPage />} />
         <Route path="/cart" element={<CartPage />} />
+        <Route path="/pagi" element={<SlicePagination />} />
         <Route path="/singleproduct/:id" element={<SingleProductPage />} />
       </Routes>
       <FooterSection />

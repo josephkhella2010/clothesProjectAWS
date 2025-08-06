@@ -1,6 +1,7 @@
 interface CartItemsType {
   product: ProductType;
   quantity: number;
+  cartItemId?: number | string;
 }
 
 export interface UserType {

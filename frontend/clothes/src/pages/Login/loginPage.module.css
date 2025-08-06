@@ -4,7 +4,7 @@
   background-color: blueviolet;
 }
 .formContainer {
-  background-color: brown;
+  background-color: rgb(44, 49, 173);
   padding: 20px;
   display: flex;
   justify-content: center;
